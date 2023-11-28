@@ -1,0 +1,124 @@
+/*Structure*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: gray;
+}
+
+#instrument-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#instrument-details {
+    display: block;
+    margin: 10px;
+    padding: auto;
+    background-color: seagreen;
+    text-align: center;
+}
+
+.instrument {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: seagreen;
+    width: 285px;
+    height: 250px;
+    text-align: center;
+}
+
+.instrument img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+}
+
+img {
+    width:200px;
+    height: 70%;
+}
+
+#add-link {
+    font-size: 2em;
+    border: 1px solid crimson;
+}
+
+#edit-link {
+    float: right;
+    margin-right: 10px;
+}
+
+#delete-link {
+    float: right;
+}
+
+#add-edit-instrument-container {
+    max-width: 95%;
+}
+
+.transparent {
+    display:none;
+}
+
+/*form*/ 
+
+label {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+#ingredients-p input {
+    margin-top: 5px;
+}
+
+#add-ingredient {
+    font-size: 0.75em;
+    text-align: right;
+}
+
+/*Modal Content*/
+
+.dialog {
+    margin: auto;
+    padding: 20px;
+    border: 1px solid blue;
+    width: 100%;
+}
+
+.dialog img {
+    max-width: fit-content;
+    display: block;
+    padding: 30px 5px 30px 30px;
+    margin: auto;
+}
+
+/*Close*/
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0px 5px;
+}
+
+.close:hover, .close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*Typography*/
+
+h2 {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
