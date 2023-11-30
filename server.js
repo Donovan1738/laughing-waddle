@@ -7,7 +7,6 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 const mongoose = require("mongoose");
-const { create } = require("domain");
 
 const upload = multer({ dest: __dirname + "/public/images" });
 
@@ -17,7 +16,7 @@ mongoose
     .catch((error) => console.log("couldn't connect to mongodb", error));
 
 const instrumentSchema = new mongoose.Schema({
-    _id: mongoose.SchemaTypes.ObjectId,
+    // _id: mongoose.SchemaTypes.ObjectId,
     name: String,
     description: String,
     material: String,
@@ -26,20 +25,6 @@ const instrumentSchema = new mongoose.Schema({
 });
 
 const Instrument = mongoose.model("Instrument", instrumentSchema);
-
-// const createIntrument = async () => {
-//     const instrument = new Instrument({
-//         name: "Dang it gavin",
-//         description: "I am dang iting gavin",
-//         parts: ["dang", "it", "gavin"],
-//     });
-
-//     const result = await instrument.save();
-//     console.log(result);
-// };
-
-// createIntrument();
-
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
@@ -54,15 +39,8 @@ const getInstruments = async (res) => {
     res.send(instruments);
 }
 
-
 app.get("/api/instruments/:id", (req, res) => {
     getInstrument(res, req.params.id);
-    // const id = parseInt(req.params.id);
-    // const instrument = instruments.find((r)=>r.id === id);
-    // if (!instrument) {
-    //     res.status(404).send("The instrument with the given id was not found");
-    // }
-    // res.send(instrument);
 });
 
 const getInstrument = async(res, id) => {
@@ -85,16 +63,10 @@ app.post("/api/instruments", upload.single("img"), (req,res) => {
         parts: req.body.parts.split(","),
     });
 
-    // if (req.body.parts) {
-    //     instrument.parts = req.body.parts.split(",");
-    // }
-
     if (req.file) {
         instrument.img = "images/" + req.file.filename;
     }
 
-    // instruments.push(instrument);
-    // res.send(instrument);
     createInstrument(res, instrument);
 });
 
@@ -104,9 +76,6 @@ const createInstrument = async (res, instrument) => {
 }
 
 app.put("/api/instruments/:id", upload.single("img"), (req, res) => {
-    // const id = parseInt(req.params.id);
-    // const instrument = instruments.find((r)=> r._id === parseInt(req.params.id));
-    // if (!instrument) res.status(404).send("Instrument with given id was not found");
     const result = validateInstrument(req.body);
     console.log(result);
     if (result.error) {
@@ -142,14 +111,6 @@ const updateInstrument = async (req,res) => {
 
 app.delete("/api/instruments/:id", (req, res) => {
     removeInstruments(res, req.params.id);
-    // const id = parseInt(req.params.id);
-    // const instrument = instruments.find((r)=>r.id === id);
-    // if (!instrument) {
-    //     res.status(404).send("The instrument with the given id was not found");
-    // }
-    // const index = instruments.indexOf(instrument);
-    // instruments.splice(index, 1);
-    // res.send(instrument);
 });
 
 const removeInstruments = async (res, id) => {
