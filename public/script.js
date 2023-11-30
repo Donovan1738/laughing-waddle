@@ -1,6 +1,6 @@
 const getInstruments = async () => {
     try {
-        return (await fetch("https://node-project3.onrender.com/api/instruments")).json();
+        return (await fetch("https://node-project4.onrender.com/api/instruments")).json();
     } catch(error) {
         console.log(error);
     }
