@@ -7,6 +7,55 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
+const mongoose = require("mongoose");
+
+mongoose
+    .connect("mongodb+srv://donovankeshawn:donovan@cluster0.cygbdth.mongodb.net/?retryWrites=true&w=majority")
+    .then(() => console.log("connected to mongodb"))
+    .catch((error) => console.log("couldn't connect to mongodb", error));
+
+const instrumentSchema = new mongoose.Schema({
+    name: String,
+    description: String,
+    parts: [String],
+});
+
+const Instrument = mongoose.model("Instrument", instrumentSchema);
+
+const createIntrument = async () => {
+    const instrument = new Instrument({
+        name: "Dang it gavin",
+        description: "I am dang iting gavin",
+        parts: ["dang", "it", "gavin"],
+    });
+
+    const result = await instrument.save();
+    console.log(result);
+};
+
+createIntrument();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const upload = multer({ dest: __dirname + "/public/images" });
 
 app.get("/", (req, res) => {
