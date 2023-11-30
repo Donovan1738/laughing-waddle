@@ -1,6 +1,6 @@
 const getInstruments = async () => {
     try {
-        return (await fetch("https://node-project4.onrender.com/api/instruments")).json();
+        return (await fetch("/api/instruments")).json();
     } catch(error) {
         console.log(error);
     }
@@ -26,7 +26,7 @@ const showInstruments = async () => {
         if(instrument.img) {
             const img = document.createElement("img");
             section.append(img);
-            img.src = "https://node-project3.onrender.com/" + instrument.img;
+            img.src = instrument.img;
         }
         
 
@@ -142,7 +142,7 @@ const addEditInstrument = async (e) => {
         });
     } else {
         // existing instrument
-        response = await fetch(`https://node-project4.onrender.com/api/instruments/${form._id.value}`, {
+        response = await fetch(`/api/instruments/${form._id.value}`, {
             method: "PUT",
             body: formData,
         });
