@@ -1,6 +1,6 @@
 const getInstruments = async () => {
     try {
-        return (await fetch("/api/instruments")).json();
+        return (await fetch("https://node-project4.onrender.com/api/instruments")).json();
     } catch(error) {
         console.log(error);
     }
@@ -26,7 +26,7 @@ const showInstruments = async () => {
         if(instrument.img) {
             const img = document.createElement("img");
             section.append(img);
-            img.src = instrument.img;
+            img.src = "https://node-project4.onrender.com" + instrument.img;
         }
         
 
@@ -82,7 +82,7 @@ const displayDetails = (instrument) => {
 };
 
 const deleteInstrument = async (instrument) => {
-    let response = await fetch(`/api/instruments/${instrument.id}`, {
+    let response = await fetch(`https://node-project4.onrender.com/api/instruments/${instrument._id}`, {
         method: "DELETE", 
         headers: {
             "Content-Type": "application/json;charset=utf-8",
@@ -102,7 +102,7 @@ const deleteInstrument = async (instrument) => {
 
 const populateEditForm = (instrument) => {
     const form = document.getElementById("add-edit-instrument-form");
-    form._id.value = instrument.id;
+    form._id.value = instrument._id;
     form.name.value = instrument.name;
     form.description.value = instrument.description;
     form.material.value = instrument.material;
@@ -136,13 +136,13 @@ const addEditInstrument = async (e) => {
         formData.delete("_id");
         // console.log(...formData);
 
-        response = await fetch("/api/instruments", {
+        response = await fetch("https://node-project4.onrender.com/api/instruments", {
             method: "POST",
             body: formData,
         });
     } else {
         // existing instrument
-        response = await fetch(`/api/instruments/${form._id.value}`, {
+        response = await fetch(`https://node-project4.onrender.com/api/instruments/${form._id.value}`, {
             method: "PUT",
             body: formData,
         });

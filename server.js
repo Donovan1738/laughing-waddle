@@ -83,14 +83,6 @@ app.put("/api/instruments/:id", upload.single("img"), (req, res) => {
         return;
     }
     updateInstrument(req,res);
-    // instrument.name = req.body.name;
-    // instrument.description = req.body.description;
-    // instrument.material = req.body.material;
-    // instrument.parts = req.body.parts.split(",");
-    //  if (req.file) {
-    //     instrument.img = "images/" + req.file.filename;
-    // }
-    // res.send(instrument);
 });
 
 const updateInstrument = async (req,res) => {
@@ -106,7 +98,8 @@ const updateInstrument = async (req,res) => {
     }
 
     const result = await Instrument.updateOne({_id: req.params.id }, fieldsToUpdate);
-    res.send(result);
+    const instrument = await Instrument.findById(req.params.id);
+    res.send(instrument);
 };
 
 app.delete("/api/instruments/:id", (req, res) => {
