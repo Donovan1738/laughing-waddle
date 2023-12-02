@@ -26,7 +26,7 @@ const showInstruments = async () => {
         if(instrument.img) {
             const img = document.createElement("img");
             section.append(img);
-            img.src = "https://node-project4.onrender.com" + instrument.img;
+            img.src = "https://node-project4.onrender.com/" + instrument.img;
         }
         
 
